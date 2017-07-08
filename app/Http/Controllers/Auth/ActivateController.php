@@ -8,9 +8,9 @@ use App\Models\User;
 use App\Models\Profile;
 use App\Traits\ActivationTrait;
 use App\Traits\CaptureIpTrait;
-use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use jeremykenedy\LaravelRoles\Models\Permission;
@@ -149,7 +149,7 @@ class ActivateController extends Controller
         $user           = Auth::user();
         $currentRoute   = Route::currentRouteName();
         $ipAddress      = new CaptureIpTrait;
-        $role           = Role::where('name', '=', 'user')->first();
+        $role           = Role::where('slug', '=', 'user')->first();
         $profile        = new Profile;
 
         $rCheck = $this->activeRedirect($user, $currentRoute);
